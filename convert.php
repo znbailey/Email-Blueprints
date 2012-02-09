@@ -39,10 +39,12 @@
 		'http:\/\/gallery.mailchimp.com\/653153ae841fd11de66ad181a\/images\/sfs_icon_facebook.png' => 'https://pi.pardot.com/images/addthis/16x16/facebook.png',
 		'http:\/\/gallery.mailchimp.com\/653153ae841fd11de66ad181a\/images\/sfs_icon_twitter.png' => 'https://pi.pardot.com/images/addthis/16x16/twitter.png',
 		'<\/html>' => "    <!--\n      This email was originally designed by the wonderful folks at MailChimp and remixed by Pardot.\n      It is licensed under CC BY-SA 3.0 - http://creativecommons.org/licenses/by-sa/3.0/\n    -->\n</html>",
+		'\/\*\*(.+?)\*\/' => '',
+		'\/\*@(.+?)\*\/' => '',
 	);
 	
 	foreach($replacements as $mcToken => $pdToken) {
-		$template = preg_replace('/'.$mcToken.'/i', $pdToken, $template);
+		$template = preg_replace('/'.$mcToken.'/is', $pdToken, $template);
 	}
 	
 	$fout = fopen('../converted/'.$argv[1], 'w');
